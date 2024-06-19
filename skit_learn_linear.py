@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Jun  4 09:59:47 2018
-
-@author: HP
+@date: 20240616
+@author: FHR
+@description: 读取内蒙古碳排放指标统计数据.xls文件，使用sklearn库中的线性回归模型进行线性回归分析
 """
 import xlrd
 import numpy
@@ -10,7 +10,7 @@ from sklearn.linear_model import LinearRegression
 from matplotlib.font_manager import FontManager, FontProperties
 import matplotlib.pyplot as plt
 def read_xlrd():
-    excel1 = xlrd.open_workbook(r'内蒙古碳排放指标统计数据.xls')
+    excel1 = xlrd.open_workbook(r'./内蒙古碳排放指标统计数据.xls')
     sheet2_name = excel1.sheet_names()[0]
     sheet2 = excel1.sheet_by_name('Sheet1')
     # sheet的名称，行数，列数

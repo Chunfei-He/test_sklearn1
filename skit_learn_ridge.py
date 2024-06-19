@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jun 28 15:57:05 2018
-
-@author: HP
+@date: 20240616
+@author: FHR
 """
 '''
 import pandas as pd
@@ -34,11 +33,11 @@ print(data['能源强度（吨标准煤/万元）'])
 '''
 # -*- coding: utf-8 -*-
 """
-Created on Mon Jun  4 09:59:47 2018
-
-@author: HP
+@date: 20240616
+@author: FHR
 """
 import xlrd
+import numpy as np
 import numpy
 from sklearn.linear_model import LinearRegression,Ridge 
 from matplotlib.font_manager import  FontProperties

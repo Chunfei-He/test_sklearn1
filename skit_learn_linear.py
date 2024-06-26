@@ -4,6 +4,10 @@
 @author: FHR
 @description: 读取内蒙古碳排放指标统计数据.xls文件，使用sklearn库中的线性回归模型进行线性回归分析
 """
+"""
+@date: 20240626
+@description: 
+"""
 import xlrd
 import numpy
 from sklearn.linear_model import LinearRegression

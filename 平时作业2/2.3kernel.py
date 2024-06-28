@@ -14,6 +14,8 @@ from sklearn.linear_model import LinearRegression
 from matplotlib.font_manager import FontManager, FontProperties
 from sklearn.kernel_ridge import KernelRidge 
 import matplotlib.pyplot as plt
+import numpy as np
+from scipy.interpolate import interp1d  
 
 trained_model = None  
 
@@ -66,22 +68,34 @@ def getChineseFont():
 def matplotlab1():
     X,Y,Z = read_xlrd()
     # 生成用于绘图的等距X值  
+     # 定义新的插值点，从0到30均匀分布100个点  
+    new_points = np.linspace(0, 30, 100)  
+    
+    # 初始化一个新的100x6的矩阵来存储插值结果  
+    X_interpolated = np.zeros((100, 6))  
+    
+    # 对每一列进行插值  
+    for i in range(6):  
+        f = interp1d(np.arange(31), X[:, i], kind='cubic')  # 使用三次立方插值  
+        X_interpolated[:, i] = f(new_points) 
+
     X_plot = numpy.linspace(X[:, 0].min(), X[:, 0].max(), 100)[:, None]  
-    Y_plot = trained_model.predict(X)  # 使用模型预测这些X值对应的Y值  
+    Y_plot = trained_model.predict(X_interpolated)  # 使用模型预测这些X值对应的Y值  
+    line_X = np.linspace(Z.min(), Z.max(), 100).reshape(-1, 1)
   
     # 绘制原始数据点（可选）  
-    plt.scatter(X[:, 0], Y, c='blue', label='实际数据')  
+    plt.scatter(Z, Y, c='blue')  
   
     # 绘制回归线  
-    plt.plot(X_plot[:, 0], Y_plot, color='green', label='Kernel线性回归')  
+    plt.plot(line_X, Y_plot, color='green')  
   
-    plt.xlabel('X值')  
-    plt.ylabel('Y值')  
-    plt.title('Kernel线性回归拟合结果')  
+    plt.xlabel('X值', fontproperties=getChineseFont())  
+    plt.ylabel('Y值', fontproperties=getChineseFont())  
+    plt.title('Kernel线性回归拟合结果', fontproperties=getChineseFont())  
     plt.legend()  
-    plt.show()  
+    plt.savefig('Kernel线性回归拟合结果.png')
+    # plt.show()  
   
-    plt.show()
 #read_xlrd()
 if __name__=='__main__':
     KernelRidgeRegression()  

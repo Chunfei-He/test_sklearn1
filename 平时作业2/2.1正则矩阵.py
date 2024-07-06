@@ -47,7 +47,7 @@ from scipy.interpolate import interp1d
 trained_model = None
 
 def read_xlrd():
-    excel1 = xlrd.open_workbook(r'离差标准化后的数据.xls')
+    excel1 = xlrd.open_workbook(r'C:\private\代码\test_sklearn1\平时作业2\离差标准化后的数据.xls')
     sheet2_name = excel1.sheet_names()[0]
     sheet2 = excel1.sheet_by_name('Sheet1')
     row_list = []
